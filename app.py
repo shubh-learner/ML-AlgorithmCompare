@@ -36,8 +36,8 @@ def randomforest():
     flag = 'rfc'
     return render_template('index.html',flag= flag)
     
-@app.route('/xgboostclassification', methods=['POST'])
-def xgboostclassification():
+@app.route('/knnclassification', methods=['POST'])
+def knnclassification():
     flag = 'knn'
     return render_template('index.html', flag= flag)
  
@@ -77,6 +77,6 @@ def predict():
         
 
 if __name__ == '__main__':
-	app.run(debug=True)
-    #app.run(host='0.0.0.0' , port = 5000)
+	#app.run(debug=True)
+    app.run(host='0.0.0.0' , port = 5000)
     

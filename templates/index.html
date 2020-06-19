@@ -25,7 +25,7 @@
          <!-- Text Area -->
          
     	
-        	
+        <div class="ml-container">
         	{% if flag=='nb' %}
             	<h2 class='input-heading'>Please enter values ( Naive Bayes ) </h1>
          	    <form action="{{ url_for('predict') }}"  method="POST">
@@ -43,7 +43,7 @@
                     <input class="form-input" type="text" name="slope" placeholder="Peak exercise ST eg. 1 = upsloping, 2 = flat, 3 = downsloping"><br>
                     <input class="form-input" type="text" name="ca" placeholder="Number of major vessels eg. 3"><br>
                     <input class="form-input" type="text" name="thal" placeholder="thalassemia  eg. 3 = normal, 6 = fixed defect, 7 = reversible defect"><br>
-            		<input type="submit" class="my-cta-button" value="Predict"> <br/><br/><br/>
+            		<input type="submit" class="my-cta-button" value="Predict"> 
             	</form>
             	
             {% elif flag=='rfc' %}
@@ -63,7 +63,7 @@
                     <input class="form-input" type="text" name="slope" placeholder="Peak exercise ST eg. 1 = upsloping, 2 = flat, 3 = downsloping"><br>
                     <input class="form-input" type="text" name="ca" placeholder="Number of major vessels eg. 3"><br>
                     <input class="form-input" type="text" name="thal" placeholder="thalassemia  eg. 3 = normal, 6 = fixed defect, 7 = reversible defect"><br>
-            		<input type="submit" class="my-cta-button" value="Predict"> <br/><br/><br/>
+            		<input type="submit" class="my-cta-button" value="Predict"> 
             	</form>
             	
              {% elif flag=='knn' %}
@@ -83,13 +83,13 @@
                     <input class="form-input" type="text" name="slope" placeholder="Peak exercise ST eg. 1 = upsloping, 2 = flat, 3 = downsloping"><br>
                     <input class="form-input" type="text" name="ca" placeholder="Number of major vessels eg. 3"><br>
                     <input class="form-input" type="text" name="thal" placeholder="thalassemia  eg. 3 = normal, 6 = fixed defect, 7 = reversible defect"><br>
-            		<input type="submit" class="my-cta-button" value="Predict"> <br/><br/><br/>
+            		<input type="submit" class="my-cta-button" value="Predict"> 
             	</form>
-         	{% endif %}
+            	
+         	 {% endif %}
     	</div>
 
-
-         <!-- Footer -->
+          <!-- Footer -->
        	<div class='footer'>
             <div class="contact">
                 <a target="_blank" href="https://facebook.com/arya.shubh" class="fa fa-facebook"></a>
