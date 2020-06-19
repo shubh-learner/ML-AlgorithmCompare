@@ -4,4 +4,4 @@
 * The dataset used in the app is taken from UCI.
 
 Please click on the below URL to go to the Web App:
-https://sentiment-analyser-ml.herokuapp.com/ 
+http://mlcompare.herokuapp.com/ 
