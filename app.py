@@ -11,9 +11,9 @@ classifierNB = pickle.load(open(filename, 'rb'))
 filename = 'RFC-model.pkl'
 classifierRFC = pickle.load(open(filename, 'rb'))
 
-# Load the XgBoost CLassifier model
-filename = 'XgBoost-model.pkl'
-classifierXg = pickle.load(open(filename, 'rb'))
+# Load the KNN CLassifier model
+filename = 'KNN-model.pkl'
+classifierKNN = pickle.load(open(filename, 'rb'))
 
 app = Flask(__name__)
 
@@ -38,7 +38,7 @@ def randomforest():
     
 @app.route('/xgboostclassification', methods=['POST'])
 def xgboostclassification():
-    flag = 'xgb'
+    flag = 'knn'
     return render_template('index.html', flag= flag)
  
     
@@ -71,11 +71,12 @@ def predict():
             my_prediction = classifierRFC.predict(data)
             return render_template('result.html', prediction=my_prediction, flagpred = 'rfc')
         
-        elif request.form['predictflag'] == 'xgb':
-            my_prediction = classifierXg.predict(data)
-            return render_template('result.html', prediction=my_prediction, flagpred = 'xgb')
+        elif request.form['predictflag'] == 'knn':
+            my_prediction = classifierKNN.predict(data)
+            return render_template('result.html', prediction=my_prediction, flagpred = 'knn')
         
 
 if __name__ == '__main__':
 	app.run(debug=True)
+    #app.run(host='0.0.0.0' , port = 5000)
     
