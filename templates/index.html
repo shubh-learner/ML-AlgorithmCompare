@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <title>Heart Attack Predictor</title>
+        <link rel="shortcut icon" href="{{ url_for('static', filename='Heart-icon.png') }}">
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+        <link href="https://fonts.googleapis.com/css2?family=Bubblegum+Sans&family=Neucha&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link href="https://fonts.googleapis.com/css2?family=Acme&display=swap" rel="stylesheet">
+     
+    </head>
+
+    <body>
+
+        <!-- Website Title -->
+    	<div class="container">
+            <h2 class='container-heading'><span class="heading_font">Heart Attack Prediction Tool</span></h2>
+            <div class='description'>
+    			<p>A Machine Learning Web App, Built with Flask, Deployed using Heroku.</p>
+    		</div>
+    	</div>
+
+         <!-- Text Area -->
+         
+    	
+        	
+        	{% if flag=='nb' %}
+            	<h2 class='input-heading'>Please enter values ( Naive Bayes ) </h1>
+         	    <form action="{{ url_for('predict') }}"  method="POST">
+             	    <input type="hidden" name= "predictflag" value="rfc">
+                    <input class="form-input" type="text" name="age" placeholder="Age of the individual (years) eg. 30"><br>
+                    <input class="form-input" type="text" name="sex" placeholder="Gender 0 or 1 eg. 1 = male 0 = female"><br>
+                    <input class="form-input" type="text" name="cp" placeholder="Chest-pain type eg. 1 = typical angina, 2 = atypical angina, 3 = non — anginal pain, 4 = asymptotic"><br>
+                    <input class="form-input" type="text" name="trestbps" placeholder="Resting Blood Pressure in mmHg eg. 120"><br>
+                    <input class="form-input" type="text" name="chol" placeholder="Serum Cholestrol (mg/dl) eg. 0"><br>
+                    <input class="form-input" type="text" name="fbs" placeholder="Fasting Blood Sugar - If fasting blood sugar if > 120mg/dl then : 1, else : 0 "><br>
+                    <input class="form-input" type="text" name="restecg" placeholder="ECG , 0 = normal, 1 = having ST-T wave abnormality, 2 = left ventricular hyperthrophy"><br>
+                    <input class="form-input" type="text" name="thalach" placeholder="Max heart rate achieved eg. 120"><br>
+                    <input class="form-input" type="text" name="exang" placeholder="Exercise induced angina  eg. 1 = yes , 0 = No"><br>
+                    <input class="form-input" type="text" name="oldpeak" placeholder="ST depression eg. 0"><br>
+                    <input class="form-input" type="text" name="slope" placeholder="Peak exercise ST eg. 1 = upsloping, 2 = flat, 3 = downsloping"><br>
+                    <input class="form-input" type="text" name="ca" placeholder="Number of major vessels eg. 3"><br>
+                    <input class="form-input" type="text" name="thal" placeholder="thalassemia  eg. 3 = normal, 6 = fixed defect, 7 = reversible defect"><br>
+            		<input type="submit" class="my-cta-button" value="Predict"> <br/><br/><br/>
+            	</form>
+            	
+            {% elif flag=='rfc' %}
+            	<h2 class='input-heading'>Please enter values ( Random Forest ) </h1>
+         	   	<form action="{{ url_for('predict') }}" method="POST">
+             	    <input type="hidden" name= "predictflag" value="rfc">
+                    <input class="form-input" type="text" name="age" placeholder="Age of the individual (years) eg. 30"><br>
+                    <input class="form-input" type="text" name="sex" placeholder="Gender 0 or 1 eg. 1 = male 0 = female"><br>
+                    <input class="form-input" type="text" name="cp" placeholder="Chest-pain type eg. 1 = typical angina, 2 = atypical angina, 3 = non — anginal pain, 4 = asymptotic"><br>
+                    <input class="form-input" type="text" name="trestbps" placeholder="Resting Blood Pressure in mmHg eg. 120"><br>
+                    <input class="form-input" type="text" name="chol" placeholder="Serum Cholestrol (mg/dl) eg. 0"><br>
+                    <input class="form-input" type="text" name="fbs" placeholder="Fasting Blood Sugar - If fasting blood sugar if > 120mg/dl then : 1, else : 0 "><br>
+                    <input class="form-input" type="text" name="restecg" placeholder="ECG , 0 = normal, 1 = having ST-T wave abnormality, 2 = left ventricular hyperthrophy"><br>
+                    <input class="form-input" type="text" name="thalach" placeholder="Max heart rate achieved eg. 120"><br>
+                    <input class="form-input" type="text" name="exang" placeholder="Exercise induced angina  eg. 1 = yes , 0 = No"><br>
+                    <input class="form-input" type="text" name="oldpeak" placeholder="ST depression eg. 0"><br>
+                    <input class="form-input" type="text" name="slope" placeholder="Peak exercise ST eg. 1 = upsloping, 2 = flat, 3 = downsloping"><br>
+                    <input class="form-input" type="text" name="ca" placeholder="Number of major vessels eg. 3"><br>
+                    <input class="form-input" type="text" name="thal" placeholder="thalassemia  eg. 3 = normal, 6 = fixed defect, 7 = reversible defect"><br>
+            		<input type="submit" class="my-cta-button" value="Predict"> <br/><br/><br/>
+            	</form>
+            	
+             {% elif flag=='xgb' %}
+            	<h2 class='input-heading'>Please enter values ( XgBoost ) </h1>
+         	   	<form action="{{ url_for('predict') }}" method="POST">
+             	    <input type="hidden" name= "predictflag" value="rfc">
+                    <input class="form-input" type="text" name="age" placeholder="Age of the individual (years) eg. 30"><br>
+                    <input class="form-input" type="text" name="sex" placeholder="Gender 0 or 1 eg. 1 = male 0 = female"><br>
+                    <input class="form-input" type="text" name="cp" placeholder="Chest-pain type eg. 1 = typical angina, 2 = atypical angina, 3 = non — anginal pain, 4 = asymptotic"><br>
+                    <input class="form-input" type="text" name="trestbps" placeholder="Resting Blood Pressure in mmHg eg. 120"><br>
+                    <input class="form-input" type="text" name="chol" placeholder="Serum Cholestrol (mg/dl) eg. 0"><br>
+                    <input class="form-input" type="text" name="fbs" placeholder="Fasting Blood Sugar - If fasting blood sugar if > 120mg/dl then : 1, else : 0 "><br>
+                    <input class="form-input" type="text" name="restecg" placeholder="ECG , 0 = normal, 1 = having ST-T wave abnormality, 2 = left ventricular hyperthrophy"><br>
+                    <input class="form-input" type="text" name="thalach" placeholder="Max heart rate achieved eg. 120"><br>
+                    <input class="form-input" type="text" name="exang" placeholder="Exercise induced angina  eg. 1 = yes , 0 = No"><br>
+                    <input class="form-input" type="text" name="oldpeak" placeholder="ST depression eg. 0"><br>
+                    <input class="form-input" type="text" name="slope" placeholder="Peak exercise ST eg. 1 = upsloping, 2 = flat, 3 = downsloping"><br>
+                    <input class="form-input" type="text" name="ca" placeholder="Number of major vessels eg. 3"><br>
+                    <input class="form-input" type="text" name="thal" placeholder="thalassemia  eg. 3 = normal, 6 = fixed defect, 7 = reversible defect"><br>
+            		<input type="submit" class="my-cta-button" value="Predict"> <br/><br/><br/>
+            	</form>
+         	{% endif %}
+    	</div>
+
+
+         <!-- Footer -->
+       	<div class='footer'>
+            <div class="contact">
+                <a target="_blank" href="https://facebook.com/arya.shubh" class="fa fa-facebook"></a>
+                <a target="_blank" href="https://github.com/shubh-learner/ML---Natural-Language-Processing" class="fa fa-github"></a>
+            </div>
+            <p class='footer-description'>Action is the foundational key to all success. ❤️ Shubh Arya.</p>
+        </div>
+
+    </body>
+</html>

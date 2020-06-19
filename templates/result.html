@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+
+<html lang="en" dir="ltr">
+	<head>
+		<meta charset="utf-8">
+        <title>Heart Attack Predictor</title>
+        <link rel="shortcut icon" href="{{ url_for('static', filename='Heart-icon.png') }}">
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+		<link href="https://fonts.googleapis.com/css2?family=Bubblegum+Sans&family=Neucha&display=swap" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css2?family=Piedra&display=swap" rel="stylesheet">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+		<link href="https://fonts.googleapis.com/css2?family=Acme&display=swap" rel="stylesheet">
+     
+	</head>
+
+	<body>
+
+		<!-- Website Title -->
+    	<div class="container">
+            <h2 class='container-heading'><span class="heading_font">Heart Attack Prediction Tool</span></h2>
+            <div class='description'>
+    			<p>A Machine Learning Web App, Built with Flask, Deployed using Heroku.</p>
+    		</div>
+    	</div>
+
+			<!-- Result -->
+		<div class="results">
+		{% if flag == 'ca' %}
+			<h1> <span class='headinggraph'>Comparsion Graph for ML Algorithms Accuracy</span></h1>
+			<img src="{{url_for('static', filename='compare-algo.png')}}" align="middle" />			
+			
+		{% elif flagpred == 'nb' %}
+			{% if prediction==1  %}
+				<h1>Prediction - NB: <span class='danger'>Sorry! You have HIGH chances of Heart Attack.</span></h1>
+				<img class="gif" width="300" height="300" src="{{ url_for('static', filename='snoopy_sad.gif') }}" alt="Diabetes Image">
+			{% elif prediction==0 %}
+				<h1>Prediction - NB: <span class='safe'>Great! You have LOW chances of Heart Attack.</span></h1>
+				<img class="gif1" width="300" height="300" src="{{ url_for('static', filename='snoopy_happy.gif') }}" alt="Not Diabetes Image">
+			{% endif %}
+			
+        {% elif flagpred == 'rfc' %}
+            {% if prediction==1  %}
+				<h1>Prediction - RFC: <span class='danger'>Sorry! You have HIGH chances of Heart Attack.</span></h1>
+				<img class="gif" width="300" height="300" src="{{ url_for('static', filename='snoopy_sad.gif') }}" alt="Diabetes Image">
+			{% elif prediction==0 %}
+				<h1>Prediction - RFC: <span class='safe'>Great! You have LOW chances of Heart Attack.</span></h1>
+				<img class="gif1" width="300" height="300" src="{{ url_for('static', filename='snoopy_happy.gif') }}" alt="Not Diabetes Image">
+			{% endif %}
+			
+        {% elif flagpred == 'xgb' %}
+            {% if prediction==1  %}
+				<h1>Prediction - XgB: <span class='danger'>Sorry! You have HIGH chances of Heart Attack.</span></h1>
+				<img class="gif" width="300" height="300" src="{{ url_for('static', filename='snoopy_sad.gif') }}" alt="Diabetes Image">
+			{% elif prediction==0 %}
+				<h1>Prediction - XgB: <span class='safe'>Great! You have LOW chances of Heart Attack.</span></h1>
+				<img class="gif1" width="300" height="300" src="{{ url_for('static', filename='snoopy_happy.gif') }}" alt="Not Diabetes Image">
+			{% endif %}
+			
+        {% endif %}
+        
+		</div>
+
+		 <!-- Footer -->
+       	<div class='footer'>
+            <div class="contact">
+                <a target="_blank" href="https://facebook.com/arya.shubh" class="fa fa-facebook"></a>
+                <a target="_blank" href="https://github.com/shubh-learner/ML---Natural-Language-Processing" class="fa fa-github"></a>
+            </div>
+            <p class='footer-description'>Action is the foundational key to all success. ❤️ Shubh Arya.</p>
+        </div>
+
+	</body>
+</html>
