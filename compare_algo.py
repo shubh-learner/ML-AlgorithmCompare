@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 from sklearn import model_selection
 from sklearn.naive_bayes import GaussianNB
 from sklearn.ensemble import RandomForestClassifier
-from xgboost import XGBClassifier
+from sklearn.neighbors import KNeighborsClassifier
 
 from sklearn.svm import SVC
 
@@ -35,9 +35,11 @@ y = dataset.iloc[:, -1].values
 seed = 7
 # prepare models
 models = []
+
+models.append(('KNN', KNeighborsClassifier()))
 models.append(('NaiveBayes', GaussianNB()))
 models.append(('RFC', RandomForestClassifier()))
-models.append(('XgBoost', XGBClassifier()))
+
 
 # evaluate each model in turn
 results = []
@@ -50,6 +52,7 @@ for name, model in models:
 	names.append(name)
 	msg = "%s: %f (%f)" % (name, cv_results.mean(), cv_results.std())
 	print(msg)
+    
 # boxplot algorithm comparison
 fig = plt.figure()
 fig.suptitle('Algorithm Comparison')

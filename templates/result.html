@@ -47,12 +47,12 @@
 				<img class="gif1" width="300" height="300" src="{{ url_for('static', filename='snoopy_happy.gif') }}" alt="Not Diabetes Image">
 			{% endif %}
 			
-        {% elif flagpred == 'xgb' %}
+        {% elif flagpred == 'knn' %}
             {% if prediction==1  %}
-				<h1>Prediction - XgB: <span class='danger'>Sorry! You have HIGH chances of Heart Attack.</span></h1>
+				<h1>Prediction - KNN: <span class='danger'>Sorry! You have HIGH chances of Heart Attack.</span></h1>
 				<img class="gif" width="300" height="300" src="{{ url_for('static', filename='snoopy_sad.gif') }}" alt="Diabetes Image">
 			{% elif prediction==0 %}
-				<h1>Prediction - XgB: <span class='safe'>Great! You have LOW chances of Heart Attack.</span></h1>
+				<h1>Prediction - KNN: <span class='safe'>Great! You have LOW chances of Heart Attack.</span></h1>
 				<img class="gif1" width="300" height="300" src="{{ url_for('static', filename='snoopy_happy.gif') }}" alt="Not Diabetes Image">
 			{% endif %}
 			

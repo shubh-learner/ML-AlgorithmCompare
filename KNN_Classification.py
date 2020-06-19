@@ -27,9 +27,9 @@ y = dataset.iloc[:, -1].values
 from sklearn.model_selection import train_test_split
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.2, random_state = 0)
 
-# Training XGBoost on the Training set
-from xgboost import XGBClassifier
-classifier = XGBClassifier()
+# Training the K-NN model on the Training set
+from sklearn.neighbors import KNeighborsClassifier
+classifier = KNeighborsClassifier(n_neighbors = 5, metric = 'minkowski', p = 2)
 classifier.fit(X_train, y_train)
 
 
@@ -42,5 +42,5 @@ acs = accuracy_score(y_test, y_pred)
 print(acs)
 
 # Creating a pickle file for the NB classifier
-filename = 'XgBoost-model.pkl'
+filename = 'KNN-model.pkl'
 pickle.dump(classifier, open(filename, 'wb'))
